@@ -10,13 +10,14 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    struct sockaddr_in server_address;
-    server_address.sin_family = AF_INET;
-    server_address.sin_port = htons(8080);
-    server_address.sin_addr.s_addr = INADDR_ANY;
+    sockaddr_in server_address{
+        .sin_family = AF_INET,
+        .sin_port = htons(8080),
+        .sin_addr = {INADDR_ANY}
+    };
 
     if (bind(server_socket, reinterpret_cast<struct sockaddr *>(&server_address), sizeof(server_address)) < 0) {
-        std::cerr << "Socket to port binding error" << std::endl;
+        std::cerr << "socket to port binding error" << std::endl;
         return EXIT_FAILURE;
     }
 
