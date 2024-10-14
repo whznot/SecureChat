@@ -24,4 +24,11 @@ int main() {
     std::cout << "server is running and bound to port 8080" << std::endl;
     close(server_socket);
     return EXIT_SUCCESS;
+
+    if (listen(server_socket, 5) > 0) {
+      std::cerr << "error while trying to listen for connections" << std::endl;
+      return EXIT_FAILURE;
+    }
+
+
 }
